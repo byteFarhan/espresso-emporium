@@ -4,6 +4,7 @@ import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Products from "../components/Products/Products";
 import AddProduct from "../pages/AddProduct/AddProduct";
 import UpdateProduct from "../pages/UpdateProduct/UpdateProduct";
+import Home from "../pages/Home/Home";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -12,7 +13,8 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Products />,
+        element: <Home />,
+        loader: () => fetch("http://localhost:5000/products"),
       },
       {
         path: "/add-product",
