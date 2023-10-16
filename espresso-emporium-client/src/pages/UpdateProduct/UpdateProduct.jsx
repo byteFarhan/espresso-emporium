@@ -1,6 +1,10 @@
+import { useLoaderData } from "react-router-dom";
 import InputForm from "../../components/InputForm/InputForm";
+import swal from "sweetalert";
 
 const UpdateProduct = () => {
+  const product = useLoaderData();
+  // console.log(product);
   const handleUpdateProduct = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -20,8 +24,21 @@ const UpdateProduct = () => {
       details,
       photoURL,
     };
-    console.log(UpdatedProduct);
-    // fetch()
+    // console.log(UpdatedProduct);
+    fetch(`http://localhost:5000/products/${product._id}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(UpdatedProduct),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.modifiedCount) {
+          swal("Good job!", "Product has been updated", "success");
+        }
+      });
   };
   return (
     <div>
@@ -30,6 +47,7 @@ const UpdateProduct = () => {
         description="It is a long established fact that a reader will be distraceted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here."
         submitText="Update Coffee Details"
         handleSubmit={handleUpdateProduct}
+        product={product}
       />
     </div>
   );

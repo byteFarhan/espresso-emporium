@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
 // console.log(process.env);
-const { MongoClient, ServerApiVersion } = require("mongodb");
+const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const app = express();
 const port = process.env.PORT || 5000;
 
@@ -33,10 +33,45 @@ async function run() {
       const result = await productsCollection.find().toArray();
       res.send(result);
     });
+    app.get("/products/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: new ObjectId(id) };
+      const result = await productsCollection.findOne(query);
+      res.send(result);
+    });
     app.post("/products", async (req, res) => {
       const product = req.body;
       console.log(product);
       const result = await productsCollection.insertOne(product);
+      res.send(result);
+    });
+    app.put("/products/:id", async (req, res) => {
+      const id = req.params.id;
+      const updatedProduct = req.body;
+      const filter = { _id: new ObjectId(id) };
+      const options = { upsert: true };
+      const product = {
+        $set: {
+          coffeeName: updatedProduct.coffeeName,
+          chef: updatedProduct.chef,
+          supplier: updatedProduct.supplier,
+          taste: updatedProduct.taste,
+          category: updatedProduct.category,
+          details: updatedProduct.details,
+          photoURL: updatedProduct.photoURL,
+        },
+      };
+      const result = await productsCollection.updateOne(
+        filter,
+        product,
+        options
+      );
+      res.send(result);
+    });
+    app.delete("/products/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: new ObjectId(id) };
+      const result = await productsCollection.deleteOne(query);
       res.send(result);
     });
     // Send a ping to confirm a successful connection

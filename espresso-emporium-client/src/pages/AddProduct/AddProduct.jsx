@@ -20,7 +20,7 @@ const AddProduct = () => {
       details,
       photoURL,
     };
-    console.log(product);
+    // console.log(product);
     fetch("http://localhost:5000/products", {
       method: "POST",
       headers: {
@@ -30,13 +30,14 @@ const AddProduct = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         if (data.insertedId) {
           swal({
             title: "Good job!",
             text: "The product has been added successfully",
             icon: "success",
           });
+          form.reset();
         }
       });
   };
