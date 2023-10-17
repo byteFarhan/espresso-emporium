@@ -6,11 +6,11 @@ const Product = ({ product, setProducts, products }) => {
     _id,
     coffeeName,
     chef,
+    photoURL,
     // supplier,
     // taste,
     // category,
     // details,
-    // photoURL,
   } = product;
   const handleDelete = (id) => {
     swal({
@@ -53,10 +53,10 @@ const Product = ({ product, setProducts, products }) => {
     //   });
   };
   return (
-    <div className="justify-between bg-[#F5F4F1] max-w-2xl hover:shadow md:bg-opacity-70 flex-col md:flex-row flex items-center py-8 px-4 md:p-8 rounded-sm">
+    <div className="justify-between bg-[#F5F4F1] hover:shadow md:bg-opacity-70 flex-col md:flex-row flex items-center py-8 px-4 md:p-8 rounded-sm">
       <figure>
         <img
-          src="./images/coffee-6.png"
+          src={photoURL ? photoURL : `./images/coffee-6.png`}
           alt={coffeeName}
           className="object-cover"
         />
@@ -77,7 +77,7 @@ const Product = ({ product, setProducts, products }) => {
       <div className="flex gap-5 md:flex-col">
         <button className="btn">View</button>
         <Link to={`/update-product/${_id}`}>
-          <button className="btn">Edit</button>
+          <button className="btn">Update</button>
         </Link>
         <button onClick={() => handleDelete(_id)} className="btn">
           Delete
