@@ -21,9 +21,12 @@ const Product = ({ product, setProducts, products }) => {
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        fetch(`http://localhost:5000/products/${id}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `https://espresso-emporium-server-seven.vercel.app/products/${id}`,
+          {
+            method: "DELETE",
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             console.log(data);
@@ -40,7 +43,7 @@ const Product = ({ product, setProducts, products }) => {
       }
     });
 
-    // fetch(`http://localhost:5000/products/${id}`, {
+    // fetch(`https://espresso-emporium-server-seven.vercel.app/products/${id}`, {
     //   method: "DELETE",
     // })
     //   .then((res) => res.json())

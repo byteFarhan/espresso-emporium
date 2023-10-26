@@ -16,7 +16,8 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-        loader: () => fetch("http://localhost:5000/products"),
+        loader: () =>
+          fetch("https://espresso-emporium-server-seven.vercel.app/products"),
       },
       {
         path: "/add-product",
@@ -26,12 +27,15 @@ const router = createBrowserRouter([
         path: "/update-product/:id",
         element: <UpdateProduct />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/products/${params.id}`),
+          fetch(
+            `https://espresso-emporium-server-seven.vercel.app/products/${params.id}`
+          ),
       },
       {
         path: "/users",
         element: <Users />,
-        loader: () => fetch("http://localhost:5000/users/"),
+        loader: () =>
+          fetch("https://espresso-emporium-server-seven.vercel.app/users/"),
       },
       {
         path: "/login",

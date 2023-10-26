@@ -25,13 +25,16 @@ const UpdateProduct = () => {
       photoURL,
     };
     // console.log(UpdatedProduct);
-    fetch(`http://localhost:5000/products/${product._id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(UpdatedProduct),
-    })
+    fetch(
+      `https://espresso-emporium-server-seven.vercel.app/products/${product._id}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(UpdatedProduct),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

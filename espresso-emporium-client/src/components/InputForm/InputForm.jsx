@@ -15,7 +15,7 @@ const InputForm = ({
   product,
 }) => {
   return (
-    <div className="bg-[url('./images/more/11.png')] bg-top py-20">
+    <div className="bg-[url('https://i.postimg.cc/cLQKkXns/11.png')] bg-no-repeat bg-cover bg-top py-20">
       <div className="mx-3 md:mx-6 lg:w-[1300px] mx-w-[1320px] lg:mx-auto bg-[#F4F3F0] py-12 px-6 md:p-12 rounded-sm">
         <div className="mb-5 space-y-6 text-center">
           <h1

@@ -31,7 +31,10 @@ const Login = () => {
   return (
     <div>
       {/* <Navbar /> */}
-      <div className="py-6 px-5 md:px-0 bg-[url('./images/more/11.png')]">
+      <div
+        className="py-6 px-5 md:px-0 bg-[url('https://i.postimg.cc/cLQKkXns/11.png')] bg-no-repeat
+       bg-cover bg-top"
+      >
         <div className="max-w-[1400px] mx-auto"></div>
         <div className="min-h-[87vh] hero ">
           <div className=" w-full max-w-[500px] md:px-6 card rounded bg-[#F4F3F0]">

@@ -1,4 +1,5 @@
 import { AiFillEyeInvisible, AiFillEye, AiOutlineGoogle } from "react-icons/ai";
+import axios from "axios";
 // import Navbar from "../../shared/Navbar/Navbar";
 import useAuth from "../../hooks/useAuth";
 import { useState } from "react";
@@ -57,17 +58,31 @@ const Register = () => {
         };
         console.log(logedInUser);
         // mongoDB  data base stroge functionality
-        fetch("http://localhost:5000/users", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(logedInUser),
-        })
-          .then((res) => res.json())
+        // using axios
+        axios
+          .post(
+            "https://espresso-emporium-server-seven.vercel.app/users",
+            logedInUser
+          )
           .then((data) => {
-            console.log(data);
+            console.log(data.data);
+          })
+          .catch((error) => {
+            console.log(error.message);
           });
+
+        // using fetch
+        // fetch("https://espresso-emporium-server-seven.vercel.app/users", {
+        //   method: "POST",
+        //   headers: {
+        //     "content-type": "application/json",
+        //   },
+        //   body: JSON.stringify(logedInUser),
+        // })
+        //   .then((res) => res.json())
+        //   .then((data) => {
+        //     console.log(data);
+        //   });
       })
       .catch((error) => {
         console.log(error.message);
@@ -82,23 +97,37 @@ const Register = () => {
         swal("Sign is successfull.");
         navigate("/");
         console.log(result.user);
-        const logedInUser = {
+        const loggedInUser = {
           name: result?.user?.displayName,
           email: result?.user?.email,
           photoURL: result?.user?.photoURL,
         };
         // console.log(logedInUser);
-        fetch("http://localhost:5000/users", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(logedInUser),
-        })
-          .then((res) => res.json())
+        //post using axios
+        axios
+          .post(
+            "https://espresso-emporium-server-seven.vercel.app/users",
+            loggedInUser
+          )
           .then((data) => {
-            console.log(data);
+            console.log(data.data);
+          })
+          .catch((error) => {
+            console.log(error.message);
           });
+
+        //  post using fetch
+        // fetch("https://espresso-emporium-server-seven.vercel.app/users", {
+        //   method: "POST",
+        //   headers: {
+        //     "content-type": "application/json",
+        //   },
+        //   body: JSON.stringify(logedInUser),
+        // })
+        //   .then((res) => res.json())
+        //   .then((data) => {
+        //     console.log(data);
+        //   });
       })
       .catch((error) => {
         swal(error.message);
@@ -106,7 +135,7 @@ const Register = () => {
   };
 
   return (
-    <div className="bg-[url('./images/more/11.png')]">
+    <div className="bg-[url('https://i.postimg.cc/cLQKkXns/11.png')] bg-no-repeat bg-cover bg-top">
       {/* <Navbar /> */}
       <div className="px-5 py-6 md:px-0 font-work-sans">
         <div className="max-w-[1400px] mx-auto"></div>

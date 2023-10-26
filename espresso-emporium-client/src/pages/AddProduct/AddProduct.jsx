@@ -21,7 +21,7 @@ const AddProduct = () => {
       photoURL,
     };
     // console.log(product);
-    fetch("http://localhost:5000/products", {
+    fetch("https://espresso-emporium-server-seven.vercel.app/products", {
       method: "POST",
       headers: {
         "content-type": "application/json",

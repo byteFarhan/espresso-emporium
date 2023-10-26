@@ -16,7 +16,7 @@ const Users = () => {
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        fetch(`http://localhost:5000/users/${id}`, {
+        fetch(`https://espresso-emporium-server-seven.vercel.app/users/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
